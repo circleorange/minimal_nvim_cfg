@@ -58,10 +58,10 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
 map('n', '<leader>q', vim.diagnostic.setloclist, {desc='Open Diagnostic [Q]uick fix list'})
 map('n', '<Esc><Esc>', '<C-\\><C-n>', {desc='Exit Terminal mode'})
-map('n', '<C-h>', '<C-w><C-h>', {desc='Move focus to the left window'})
-map('n', '<C-l>', '<C-w><C-l>', {desc='Move focus to the right window'})
-map('n', '<C-j>', '<C-w><C-j>', {desc='Move focus to the lower window'})
-map('n', '<C-k>', '<C-w><C-k>', {desc='Move focus to the upper window'})
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Telescope Plugin
 map('n', '<leader>ff', ':Telescope find_files<CR>', opts)
@@ -172,7 +172,7 @@ require('lazy').setup({
 	}, {
 		'folke/lazydev.nvim', ft = 'lua',
 		opts = { 
-			library = {{ path='luvit-meta/library', words={'vim%.uv'} }}
+            library = {{ path='luvit-meta/library', words={'vim%.uv'} }}
 		}
 	}, {
 		'Bilal2453/luvit-meta', lazy=true
@@ -204,7 +204,7 @@ require('lazy').setup({
 
 					map('gd', require('telescope.builtin').lsp_definitions, '[G]o to [D]efinition')
 					map('gr', require('telescope.builtin').lsp_references, '[G]o to [R]eferences')
-					map('gI', require('telescope.builtin').lsp.implementations, '[G]o to [I]mpl')
+					map('gI', require('telescope.builtin').lsp_implementations, '[G]o to [I]mpl')
 					map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 					map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 					map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -450,3 +450,4 @@ require('lazy').setup({
 	},
 })
 
+require("plugins.jdtls")
