@@ -1,4 +1,4 @@
-return {
+local catppuccin_theme = {
 	"catppuccin/nvim",
 	name = "catppuccin",
 	priority = 1000,
@@ -33,3 +33,17 @@ return {
 		vim.cmd.colorscheme("catppuccin")
 	end,
 }
+
+local gruvbox_theme = {
+	"ellisonleao/gruvbox.nvim",
+	priority = 1000,
+	config = function()
+		require("gruvbox").setup({
+			terminal_colors = true,
+			contrast = "hard",
+		})
+		vim.cmd.colorscheme("gruvbox")
+	end,
+}
+
+return gruvbox_theme
