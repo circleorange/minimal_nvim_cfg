@@ -1,48 +1,49 @@
 return {
+	-- :LspInfo - Show status of active language server
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{
-			"williamboman/mason.nvim",
-			config = true,
-		},
+		-- Auto install LSP and related tools
+		{ "williamboman/mason.nvim", config = true },
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{
-			-- opts={} same as calling require('fidget').setup({})
-			"j-hui/fidget.nvim",
-			opts = {},
-		},
+		-- Provide additional capabilities
 		"hrsh7th/cmp-nvim-lsp",
+		-- Status updates for LSP
+		-- opts={} same as calling require('fidget').setup({})
+		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
 				local map = function(keys, fn, desc)
-					vim.keymap.set("n", keys, fn, {
-						buffer = event.buf,
-						desc = "LSP:" .. desc,
-					})
+					vim.keymap.set("n", keys, fn, { buffer = event.buf, desc = "LSP:" .. desc })
 				end
 
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]o to [D]efinition")
-				map("gr", require("telescope.builtin").lsp_references, "[G]o to [R]eferences")
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]o to [I]mpl")
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				local telescope = require('telescope.builtin')
+
+				map("gd", telescope.lsp_definitions, "[G]o to [D]efinition")
+				map("gr", telescope.lsp_references, "[G]o to [R]eferences")
+				map("gI", telescope.lsp_implementations, "[G]o to [I]mpl")
+				map("<leader>D", telescope.lsp_type_definitions, "Type [D]efinition")
+				map("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("gD", vim.lsp.buf.declaration, "[G]o to [D]eclaraction")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+
 					-- Highlight references under cursor after delay
 					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-						buffer = event.buf,
-						group = highlight_augroup,
-						callback = vim.lsp.buf.document_highlight,
+						buffer = event.buf, group = highlight_augroup, callback = vim.lsp.buf.document_highlight,
+					})
+
+					vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI'}, {
+						buffer = event.buf, group = highlight_augroup, callback = vim.lsp.buf.clear_references,
 					})
 
 					vim.api.nvim_create_autocmd("LspDetach", {
@@ -71,19 +72,12 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 		-- Following servers will be automatically installed. See `:help lspconfig-all` for list of all pre-configured LSP
 		local servers = {
-			pyright = {},
-			htmx = {},
-			jdtls = {},
-			gopls = {},
+			pyright = {}, htmx = {}, jdtls = {}, gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							disable = { "missing-fields" },
-						},
+						completion = { callSnippet = "Replace" },
+						diagnostics = { disable = { "missing-fields" } },
 					},
 				},
 			},
@@ -92,10 +86,7 @@ return {
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			-- Lua code format
-			"stylua",
-		})
+		vim.list_extend(ensure_installed, { "stylua" })
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("mason-lspconfig").setup({
 			handlers = {
