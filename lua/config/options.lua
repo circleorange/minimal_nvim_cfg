@@ -5,7 +5,7 @@ vim.g.have_nerd_font = true
 
 vim.opt.number = true
 vim.opt.relativenumber = false
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.scrolloff = 10
 vim.opt.cursorline = false
 
