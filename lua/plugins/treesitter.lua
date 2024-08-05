@@ -1,6 +1,7 @@
 return {
 	-- Highlight, Edit, and Navigate code
 	"nvim-treesitter/nvim-treesitter",
+	version = false,
 	build = ":TSUpdate",
 	opts = {
 		ensure_installed = {
@@ -13,6 +14,7 @@ return {
 			"vim",
 			"java",
 			"go",
+			"python",
 		},
 		auto_install = true,
 		highlight = {

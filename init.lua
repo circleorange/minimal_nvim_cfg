@@ -30,6 +30,11 @@ require("lazy").setup({
 	require("plugins.todo_comments"),
 	require("plugins.mini"),
 	require("plugins.which_key"),
+	require("plugins.conform"),
+	require("plugins.flash"),
+	require("plugins.lint"),
+	require("plugins.trouble"),
+	require("plugins.theme"),
 	{
 		-- Auto format of tabstop and shiftwidth
 		"tpope/vim-sleuth",

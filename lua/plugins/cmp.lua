@@ -1,5 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
+	version = false,
 	event = "InsertEnter",
 	dependencies = {
 		{ -- Snippet engine and associated nvim-cmp source
@@ -16,6 +17,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -27,7 +29,7 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			completion = { completeopt = "menu,menuone, noinsert" },
+			completion = { completeopt = "menu,menuone,noinsert" },
 
 			-- For mapping reason, read :help ins-completion
 			mapping = cmp.mapping.preset.insert({
@@ -67,14 +69,11 @@ return {
 				{
 					name = "lazydev",
 					group_index = 0,
-				},
-				{
+				}, {
 					name = "nvim_lsp",
-				},
-				{
+				}, {
 					name = "luasnip",
-				},
-				{
+				}, {
 					name = "path",
 				},
 			},
