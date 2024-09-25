@@ -40,7 +40,7 @@ require("lazy").setup({
 	-- require("plugins.conform"),
 
 	-- Language Plugins and Configurations
-	require("plugins.lang.jdtls"),
+	require("plugins.lang.java"),
 	require("plugins.lang.rust"),
 	require("plugins.lang.go"),
 
