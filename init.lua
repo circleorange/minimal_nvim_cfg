@@ -25,6 +25,7 @@ require("lazy").setup({
 
 	-- General Plugins
 	require("plugins.telescope"),
+	require("plugins.jdtls"),
 	require("plugins.lsp"),
 	require("plugins.cmp"),
 	require("plugins.treesitter"),
@@ -47,7 +48,8 @@ require("lazy").setup({
 	-- Auto format of tabstop and shiftwidth
 	{ "tpope/vim-sleuth" },
 	{ "Bilal2453/luvit-meta", lazy = true },
-	{ "folke/lazydev.nvim", ft = "lua", opts = {
-		library = { { path = "luvit-meta/library", words = { "vim%.uv" } } },
+	{ "folke/lazydev.nvim", 
+		ft = "lua", 
+		opts = { library = {{ path = "luvit-meta/library", words = { "vim%.uv" }}},
 	}},
 })

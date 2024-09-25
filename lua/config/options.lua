@@ -1,10 +1,10 @@
 vim.g.mapleader 		= " "
-vim.g.maplocalleader 	= " "
+vim.g.maplocalleader 		= " "
 vim.g.autoformat 		= false
-vim.g.have_nerd_font 	= true
+vim.g.have_nerd_font 		= true
 
 vim.opt.number 			= true
-vim.opt.relativenumber 	= false
+vim.opt.relativenumber 		= false
 vim.opt.wrap 			= false
 vim.opt.scrolloff 		= 10
 vim.opt.cursorline 		= false
