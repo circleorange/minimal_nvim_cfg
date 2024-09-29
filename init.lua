@@ -25,7 +25,6 @@ require("lazy").setup({
 
 	-- General Plugins
 	require("plugins.telescope"),
-	require("plugins.jdtls"),
 	require("plugins.lsp"),
 	require("plugins.cmp"),
 	require("plugins.treesitter"),
@@ -37,7 +36,7 @@ require("lazy").setup({
 	require("plugins.trouble"),
 	require("plugins.theme"),
 	require("plugins.autopairs"),
-	-- require("plugins.conform"),
+	require("plugins.file_explorer"),
 
 	-- Language Plugins and Configurations
 	require("plugins.lang.java"),
