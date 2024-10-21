@@ -60,13 +60,13 @@ return {
 
 						-- Reference: https://github.com/mfussenegger/nvim-jdtls
 						local config = {
-							-- Command to start the Java language server
+							-- Start Java language server
 							-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 							cmd = {
 								-- "java" or "/path/to/java17_or_newer/bin/java", depends if corret java is at PATH
-								"/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+								-- "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+								"/Users/piotr.bielski/.sdkman/candidates/java/20.0.2-amzn/bin/java",
 								"-javaagent:/home/pbielski/.local/share/java/lombok.jar",
-								-- '-Xbootclasspath/a:/home/jake/.local/share/java/lombok.jar',
 
 								-- Reference: https://github.com/eclipse-jdtls/eclipse.jdt.ls
 								"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -76,20 +76,17 @@ return {
 								"-Dlog.level=ALL",
 								"-Xms1g",
 								"--add-modules=ALL-SYSTEM",
-								"--add-opens",
-								"java.base/java.util=ALL-UNNAMED",
-								"--add-opens",
-								"java.base/java.lang=ALL-UNNAMED",
+								"--add-opens", "java.base/java.util=ALL-UNNAMED",
+								"--add-opens", "java.base/java.lang=ALL-UNNAMED",
 
-								-- Must point to the eclipse.jdt.ls installation (launcher)
+								-- Must point to the eclipse.jdt.ls launcher
 								"-jar",
 								"/usr/share/java/jdtls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar",
 								"-configuration",
 								"/usr/share/java/jdtls/org.eclipse.jdt.ls.product/target/repository/config_linux/",
 
 								-- See `data directory configuration` section in the README
-								"-data",
-								workspace_dir,
+								"-data", workspace_dir,
 							},
 
 							-- This is the default if not provided, you can remove it. Or adjust as needed.
