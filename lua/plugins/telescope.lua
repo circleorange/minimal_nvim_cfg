@@ -3,9 +3,9 @@ return {
 	event = "VimEnter",
 	branch = "0.1.x",
 	dependencies = {
-		{ 
-			"nvim-lua/plenary.nvim",
-		}, 
+		{"nvim-lua/plenary.nvim"},
+		{"nvim-telescope/telescope-ui-select.nvim"},
+		{"nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font},
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			-- Ran when plugin installed or updated, not when nvim started
@@ -14,19 +14,12 @@ return {
 			cond = function()
 				return vim.fn.executable("make") == 1
 			end,
-		}, 
-		{
-			"nvim-telescope/telescope-ui-select.nvim",
-		}, 
-		{
-			"nvim-tree/nvim-web-devicons",
-			enabled = vim.g.have_nerd_font,
 		},
 	},
 	config = function()
 		require("telescope").setup({
 			-- Configurations go here: mappings, updates - See: `:help telescope.setup()`
-			defaults = { 
+			defaults = {
 				file_ignore_patterns = {
 					"node_modules/", "target/", "%.class", "%.jar", "%.o", "%.out", "%.bin"
 				}
@@ -57,17 +50,12 @@ return {
 		-- Override default behaviour
 		map("n", "<leader>/", function()
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-				winblend = 10,
-				previewer = false,
-			}))
+				winblend = 10, previewer = false}))
 		end, { desc = "[/] Fuzzy search in current buffer" })
 
 		-- Pass additional options
 		map("n", "<leader>s/", function()
-			builtin.live_grep({
-				grep_open_files = true,
-				prompt_title = "Live grep in open files",
-			})
+			builtin.live_grep({grep_open_files = true, prompt_title = "Live grep in open files"})
 		end, { desc = "[S]earch [/] in open files" })
 
 		-- Shortcut to Neovim configuration files

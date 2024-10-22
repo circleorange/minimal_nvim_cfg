@@ -27,7 +27,8 @@ return {
             local config = {
               cmd = {
                 -- Path to the Java binary
-                "/Users/piotr.bielski/.sdkman/candidates/java/current/bin/java",
+                -- "/Users/piotr.bielski/.sdkman/candidates/java/current/bin/java",
+                "/Users/piotr.bielski/.sdkman/candidates/java/20.0.2-amzn/bin/java",
                 "-javaagent:/Users/piotr.bielski/.m2/repository/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar",
                 "-Xms1g",
                 "--add-modules=ALL-SYSTEM",

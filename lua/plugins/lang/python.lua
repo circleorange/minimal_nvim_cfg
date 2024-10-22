@@ -1,19 +1,15 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		opts = { ensure_installed = { "ninja", "rsts" }}
+		opts = {ensure_installed = {"ninja", "rsts"}}
 	},
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
 			servers = {
 				ruff = {
-					cmd_env = { RUFF_TRACE = "messages" },
-					init_options = {
-						settings = {
-							logLevel = "error",
-						},
-					},
+					cmd_env = {RUFF_TRACE = "messages"},
+					init_options = {settings = {logLevel = "error"}},
 					keys = {
 						{
 							"<leader>co",
@@ -42,5 +38,4 @@ return {
 			},
 		},
 	}
-}
 }

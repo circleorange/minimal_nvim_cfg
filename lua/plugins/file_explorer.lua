@@ -28,10 +28,8 @@ return {
 		telescope.load_extension("file_browser")
 
 		-- Keymaps
-
 		-- Open file_browser
 		vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>", { noremap = true, silent = true })
-
 		-- Open file_browser with the path of the current buffer
 		vim.keymap.set("n", "<space>fB", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true, silent = true })
 	end,

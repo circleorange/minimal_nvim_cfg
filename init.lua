@@ -39,7 +39,8 @@ require("lazy").setup({
 	require("plugins.file_explorer"),
 
 	-- Language Plugins and Configurations
-	require("plugins.lang.java"),
+	-- require("plugins.lang.java"),
+	require("plugins.lang.java_macOs"),
 	require("plugins.lang.rust"),
 	-- require("plugins.lang.go"),
 
@@ -49,6 +50,6 @@ require("lazy").setup({
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{ "folke/lazydev.nvim",
 		ft = "lua",
-		opts = { library = {{ path = "luvit-meta/library", words = { "vim%.uv" }}},
-	}},
+		opts = { library = {{ path = "luvit-meta/library", words = { "vim%.uv" }}}}
+	},
 })
