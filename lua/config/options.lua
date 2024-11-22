@@ -8,7 +8,7 @@ vim.opt.relativenumber	= false
 vim.opt.wrap 			= false
 vim.opt.scrolloff 		= 10
 vim.opt.cursorline 		= false
-vim.opt.guifont 		= "JetBrainsMono Nerd Font:h15"
+vim.opt.guifont 		= "JetBrainsMono Nerd Font:h16"
 
 -- Configuration of indent; Expand tab to space, Indent size, Auto indentation
 vim.opt.expandtab = false
